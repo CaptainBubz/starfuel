@@ -8,8 +8,8 @@ public class RocketMovement : MonoBehaviour
     public float laneWidth = 2.5f;
 
     [Header("Cooldown Einstellungen")]
-    public float laneChangeCooldown = 1.0f; // Zeit in Sekunden zwischen Wechseln
-    private float nextLaneChangeTime = 0f;  // Zeitstempel, wann der nächste Wechsel erlaubt ist
+    public float laneChangeCooldown = 1.0f; 
+    private float nextLaneChangeTime = 0f;  
 
     private int currentLaneIndex = 0;
 
@@ -24,7 +24,6 @@ public class RocketMovement : MonoBehaviour
         var keyboard = Keyboard.current;
         if (keyboard == null) return;
 
-        // Prüfen, ob die aktuelle Zeit größer ist als die erlaubte Zeit für den nächsten Wechsel
         if (Time.time >= nextLaneChangeTime)
         {
             bool moved = false;
@@ -39,8 +38,6 @@ public class RocketMovement : MonoBehaviour
                 currentLaneIndex++;
                 moved = true;
             }
-
-            // Wenn wir uns bewegt haben, setzen wir den neuen Zeitstempel
             if (moved)
             {
                 nextLaneChangeTime = Time.time + laneChangeCooldown;
