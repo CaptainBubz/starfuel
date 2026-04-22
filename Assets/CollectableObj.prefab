@@ -48,8 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85979119a7a7f2e4fbc286633c07e4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotationCOllecable
+  spawnIndex: 0
+  side: 
   rotationSpeed: 50
-  moveSpeed: 10
+  moveSpeed: 12.2
 --- !u!135 &3466792530608657433
 SphereCollider:
   m_ObjectHideFlags: 0
