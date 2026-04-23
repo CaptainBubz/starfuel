@@ -7,38 +7,66 @@ public class DataSender : MonoBehaviour
     [Header("Google Forms Config")]
     public string googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSfqFHbcky-34W8eSg-765YJNys6K5D3Op7bU9Dcc5t8nPHLpQ/formResponse";
 
-    [Header("Entry IDs")]
+    [Header("Basis-Entry IDs")]
     public string entryID_VP = "entry.1073678383";
     public string entryID_Quote = "entry.967751817";
     public string entryID_RT = "entry.1822734482";
     public string entryID_Spam = "entry.351015912";
     public string entryID_Log = "entry.903630587";
 
-    [Header("NEUE IDs für Seitenstatistik")]
-    public string entryID_CountL = "entry.XXXXX"; // Hier ID für "Gesamt Links"
-    public string entryID_CountR = "entry.XXXXX"; // Hier ID für "Gesamt Rechts"
-    public string entryID_SuccL = "entry.XXXXX";  // Hier ID für "Erfolg Links"
-    public string entryID_SuccR = "entry.XXXXX";  // Hier ID für "Erfolg Rechts"
+    [Header("Seitenstatistik-Entry IDs")]
+    public string entryID_CountL = "entry.XXXXX";
+    public string entryID_CountR = "entry.XXXXX";
+    public string entryID_SuccL = "entry.XXXXX";
+    public string entryID_SuccR = "entry.XXXXX";
 
-    public void SendToGoogle(string id, float q, float rt, int s, string log, int cL, int cR, int sL, int sR)
+    [Header("NEU: Check-Phase-Entry IDs")]
+    public string entryID_Hits = "entry.XXXXX";
+    public string entryID_Misses = "entry.XXXXX";
+    public string entryID_FalseAlarms = "entry.XXXXX";
+    public string entryID_CorrectRejections = "entry.XXXXX";
+
+    [Header("NEU: Kalibrierungs-Entry ID")]
+    public string entryID_CalibThreshold = "entry.XXXXX";
+
+    public void SendToGoogle(
+        string id, float q, float rt, int s, string log,
+        int cL, int cR, int sL, int sR,
+        int hits, int misses, int fa, int cr,
+        float calibThreshold)
     {
-        StartCoroutine(PostData(id, q, rt, s, log, cL, cR, sL, sR));
+        StartCoroutine(PostData(id, q, rt, s, log, cL, cR, sL, sR, hits, misses, fa, cr, calibThreshold));
     }
 
-    IEnumerator PostData(string id, float q, float rt, int s, string log, int cL, int cR, int sL, int sR)
+    IEnumerator PostData(
+        string id, float q, float rt, int s, string log,
+        int cL, int cR, int sL, int sR,
+        int hits, int misses, int fa, int cr,
+        float calibThreshold)
     {
         WWWForm form = new WWWForm();
+
+        // Basis-Daten
         form.AddField(entryID_VP, id);
         form.AddField(entryID_Quote, q.ToString("F2") + "%");
         form.AddField(entryID_RT, rt.ToString("F0") + " ms");
         form.AddField(entryID_Spam, s.ToString());
         form.AddField(entryID_Log, log);
 
-        // NEUE Felder hinzufügen
+        // Seitenstatistik
         form.AddField(entryID_CountL, cL.ToString());
         form.AddField(entryID_CountR, cR.ToString());
         form.AddField(entryID_SuccL, sL.ToString());
         form.AddField(entryID_SuccR, sR.ToString());
+
+        // Check-Phase
+        form.AddField(entryID_Hits, hits.ToString());
+        form.AddField(entryID_Misses, misses.ToString());
+        form.AddField(entryID_FalseAlarms, fa.ToString());
+        form.AddField(entryID_CorrectRejections, cr.ToString());
+
+        // Kalibrierung
+        form.AddField(entryID_CalibThreshold, calibThreshold.ToString("F3"));
 
         using (UnityWebRequest www = UnityWebRequest.Post(googleFormURL, form))
         {

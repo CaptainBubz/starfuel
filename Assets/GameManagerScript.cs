@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     [Header("UI Elemente")]
     public GameObject startPanel;
-    public GameObject endPanel;
+
     public TextMeshProUGUI timerText;
 
     [Header("Audio (Reize)")]
@@ -29,6 +29,18 @@ public class GameManager : MonoBehaviour
     private int countRechts = 0;
     private int successLinks = 0;
     private int successRechts = 0;
+
+    [Header("Kalibrierung")]
+    public static float calibratedThresholdDb = 0.0f;  // Der vom Probanden eingestellte Wert (0-1)
+
+    [Header("Check-Phase Referenz")]
+    public CheckPhaseManager checkPhaseManager;
+
+    [Header("Check-Phase Ergebnisse")]
+    private int cp_hits = 0;
+    private int cp_misses = 0;
+    private int cp_falseAlarms = 0;
+    private int cp_correctRejections = 0;
 
     public class SpawnData
     {
@@ -70,6 +82,41 @@ public class GameManager : MonoBehaviour
         string csvLine = $"{GetTimestamp()};{kat};{det};{rTime}";
         eventLogs.Add(csvLine);
         Debug.Log(csvLine);
+    }
+    public void SetCalibratedThresholdDb(float dbValue)
+    {
+        calibratedThresholdDb = dbValue;
+        LogEvent("KALIBRIERUNG", $"Schwelle gesetzt: {dbValue:F1} dB");
+    }
+
+    public float GetReizVolume()
+    {
+        // Reiz ist 10 dB unter der individuellen Schwelle
+        float reizDb = calibratedThresholdDb - 10f;
+        return CalibrationManager.DbToGain(reizDb);
+    }
+
+    public void LogCheckPhaseTrial(int trialNr, bool hasSignal, bool heard)
+    {
+        string signalStr = hasSignal ? "Signal" : "Silence";
+        string responseStr = heard ? "Gehoert" : "NichtGehoert";
+        LogEvent("CHECK_TRIAL", $"Trial {trialNr} | {signalStr} | {responseStr}");
+    }
+    public void StartCheckPhase()
+    {
+        if (checkPhaseManager != null)
+        {
+            checkPhaseManager.StartCheckPhase();
+        }
+    }
+
+    public void SetCheckPhaseResults(int hits, int misses, int falseAlarms, int correctRejections)
+    {
+        cp_hits = hits;
+        cp_misses = misses;
+        cp_falseAlarms = falseAlarms;
+        cp_correctRejections = correctRejections;
+        LogEvent("CHECK_PHASE_END", $"H:{hits} M:{misses} FA:{falseAlarms} CR:{correctRejections}");
     }
 
     public void PlayRandomSpawnSound()
@@ -140,9 +187,10 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         isGameRunning = false;
-        Time.timeScale = 0;
-        if (endPanel != null) endPanel.SetActive(true);
+        LogEvent("SYSTEM", "Hauptspiel beendet");
+        StartCheckPhase();
     }
+
 
     // DIESE FUNKTION AM EXPORT-BUTTON VERKNÜPFEN
     public void OnSubmitData()
@@ -153,7 +201,6 @@ public class GameManager : MonoBehaviour
 
         string csvFullLog = "Zeit;Kategorie;Details;Reaktionszeit_ms\n" + string.Join("\n", eventLogs);
 
-        // NEU: Übergabe der vier neuen Werte an den DataSender
         DataSender sender = GetComponent<DataSender>();
         if (sender != null)
         {
@@ -166,12 +213,17 @@ public class GameManager : MonoBehaviour
                 countLinks,
                 countRechts,
                 successLinks,
-                successRechts
+                successRechts,
+                cp_hits,
+                cp_misses,
+                cp_falseAlarms,
+                cp_correctRejections,
+                calibratedThresholdDb
             );
         }
     }
 
-    void Update()
+        void Update()
     {
         if (isGameRunning && timerText != null) timerText.text = GetTimestamp();
     }
