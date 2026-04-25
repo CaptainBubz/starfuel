@@ -2904,6 +2904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManagerScript
   startPanel: {fileID: 610168290}
+  surveyBaseURL: https://docs.google.com/forms/d/e/1FAIpQLSdOfX7V98EZ79nO2UzFegDMpLYV2_YIMYhUbxedAaM4eKI-fg/viewform?usp=pp_url&entry.667255470=
   timerText: {fileID: 1358616424}
   audioSource: {fileID: 640485005}
   reizNachLinks: {fileID: 8300000, guid: f422d6298ede8fe48bdde142c3943212, type: 3}
@@ -2925,21 +2926,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdfd151a3e3859e4eafd87643e4caf45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DataSender
-  googleFormURL: https://docs.google.com/forms/d/e/1FAIpQLSfqFHbcky-34W8eSg-765YJNys6K5D3Op7bU9Dcc5t8nPHLpQ/formResponse
-  entryID_VP: entry.1073678383
-  entryID_Quote: entry.967751817
-  entryID_RT: entry.1822734482
-  entryID_Spam: entry.351015912
-  entryID_Log: entry.903630587
-  entryID_CountL: entry.2004619309
-  entryID_CountR: entry.1634782566
-  entryID_SuccL: entry.1410467803
-  entryID_SuccR: entry.1514264423
-  entryID_Hits: entry.489716704
-  entryID_Misses: entry.1553281873
-  entryID_FalseAlarms: entry.1869457418
-  entryID_CorrectRejections: entry.1615836109
-  entryID_CalibThreshold: entry.1083034308
+  googleFormURL: https://docs.google.com/forms/d/e/1FAIpQLSc7DJ45IiXdswBeK0VkSGfuYldsxnktW00cZ0IfkG5lxrwLyA/formResponse
+  entryID_VP: entry.435490800
+  entryID_Quote: entry.807425567
+  entryID_RT: entry.1886310239
+  entryID_Spam: entry.1651392714
+  entryID_Log: entry.1839633813
+  entryID_CountL: entry.1813233722
+  entryID_CountR: entry.690367469
+  entryID_SuccL: entry.1364798760
+  entryID_SuccR: entry.262587587
+  entryID_Hits: entry.1188724108
+  entryID_Misses: entry.737325792
+  entryID_FalseAlarms: entry.631806719
+  entryID_CorrectRejections: entry.1256181512
+  entryID_CalibThreshold: entry.1773577144
 --- !u!114 &1154681090
 MonoBehaviour:
   m_ObjectHideFlags: 0

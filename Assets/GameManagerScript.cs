@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     [Header("UI Elemente")]
     public GameObject startPanel;
 
+    [Header("Fragebogen Einstellungen")]
+    public string surveyBaseURL = "https://docs.google.com/forms/d/e/1FAIpQLSdOfX7V98EZ79nO2UzFegDMpLYV2_YIMYhUbxedAaM4eKI-fg/viewform?usp=pp_url&entry.667255470=";
+
+
     public TextMeshProUGUI timerText;
 
     [Header("Audio (Reize)")]
@@ -183,7 +187,16 @@ public class GameManager : MonoBehaviour
             LogEvent("COLLECT", $"{side} (Index {index})", kongruenz);
         }
     }
+    public void OpenSurvey()
+    {
+        // Verknüpft den Basis-Link mit der aktuellen Probanden-ID
+        string finalURL = surveyBaseURL + uniqueVPID;
 
+        // Öffnet den Browser-Tab
+        Application.OpenURL(finalURL);
+
+        Debug.Log("Fragebogen mit ID " + uniqueVPID + " geöffnet.");
+    }
     public void EndGame()
     {
         isGameRunning = false;
@@ -221,6 +234,7 @@ public class GameManager : MonoBehaviour
                 calibratedThresholdDb
             );
         }
+        OpenSurvey();
     }
 
         void Update()
