@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     [Header("UI Elemente")]
     public GameObject startPanel;
+    public TextMeshProUGUI collectableCounterText;
 
     [Header("Fragebogen Einstellungen")]
     public string surveyBaseURL = "https://docs.google.com/forms/d/e/1FAIpQLSdOfX7V98EZ79nO2UzFegDMpLYV2_YIMYhUbxedAaM4eKI-fg/viewform?usp=pp_url&entry.667255470=";
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     private int countRechts = 0;
     private int successLinks = 0;
     private int successRechts = 0;
+    private int totalCollected = 0;
 
     [Header("Kalibrierung")]
     public static float calibratedThresholdDb = 0.0f;  // Der vom Probanden eingestellte Wert (0-1)
@@ -45,6 +47,16 @@ public class GameManager : MonoBehaviour
     private int cp_misses = 0;
     private int cp_falseAlarms = 0;
     private int cp_correctRejections = 0;
+
+    [Header("Audio (Game-Sounds)")]
+    public AudioSource rocketEngineSource;
+    public AudioClip rocketEngineClip;
+    public AudioSource ambientMusicSource;
+    public AudioClip ambientMusicClip;
+
+    [Header("Game-Sound Pegel (dB über Schwelle)")]
+    public float rocketEngineDbAboveThreshold = 15f;
+    public float ambientMusicDbAboveThreshold = 5f;
 
     public class SpawnData
     {
@@ -75,9 +87,59 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         startTime = Time.time;
         isGameRunning = true;
+        totalCollected = 0;
+        UpdateCollectableCounterUI();
+        StartGameSounds();
         LogEvent("SYSTEM", "Experiment gestartet");
     }
 
+    // Berechnet Lautstärke X dB ÜBER der Schwelle
+    public float GetVolumeAboveThreshold(float dbAbove)
+    {
+        float targetDb = calibratedThresholdDb + dbAbove;
+        return CalibrationManager.DbToGain(targetDb);
+    }
+
+    // Spezifische Methoden für die einzelnen Sounds:
+    public float GetRocketEngineVolume()
+    {
+        return GetVolumeAboveThreshold(15f);  // 15 dB über Schwelle
+    }
+
+    public float GetAmbientMusicVolume()
+    {
+        return GetVolumeAboveThreshold(5f);   // 5 dB über Schwelle
+    }
+    public void StartGameSounds()
+    {
+        if (rocketEngineSource != null && rocketEngineClip != null)
+        {
+            rocketEngineSource.clip = rocketEngineClip;
+            rocketEngineSource.volume = GetVolumeAboveThreshold(rocketEngineDbAboveThreshold);
+            rocketEngineSource.loop = true;
+            rocketEngineSource.spatialBlend = 0f;
+            rocketEngineSource.Play();
+        }
+
+        if (ambientMusicSource != null && ambientMusicClip != null)
+        {
+            ambientMusicSource.clip = ambientMusicClip;
+            ambientMusicSource.volume = GetVolumeAboveThreshold(ambientMusicDbAboveThreshold);
+            ambientMusicSource.loop = true;
+            ambientMusicSource.spatialBlend = 0f;
+            ambientMusicSource.Play();
+        }
+
+        LogEvent("AUDIO", "Game-Sounds gestartet");
+    }
+
+    public void StopGameSounds()
+    {
+        if (rocketEngineSource != null) rocketEngineSource.Stop();
+        if (ambientMusicSource != null) ambientMusicSource.Stop();
+
+        LogEvent("AUDIO", "Game-Sounds gestoppt");
+    }
     public string GetTimestamp() => (Time.time - startTime).ToString("F3");
 
     // Formatiert Log direkt für CSV (Zeit;Kategorie;Details;Reaktionszeit)
@@ -182,9 +244,17 @@ public class GameManager : MonoBehaviour
             {
                 if (side == "Links") successLinks++; else successRechts++;
             }
-
+            totalCollected++;
+            UpdateCollectableCounterUI();
             string kongruenz = korrekt ? "FOLGT_REIZ" : "IGNORIERT_REIZ";
             LogEvent("COLLECT", $"{side} (Index {index})", kongruenz);
+        }
+    }
+    private void UpdateCollectableCounterUI()
+    {
+        if (collectableCounterText != null)
+        {
+            collectableCounterText.text = $"Collected: {totalCollected}";
         }
     }
     public void OpenSurvey()
@@ -200,6 +270,7 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         isGameRunning = false;
+        StopGameSounds();
         LogEvent("SYSTEM", "Hauptspiel beendet");
         StartCheckPhase();
     }
