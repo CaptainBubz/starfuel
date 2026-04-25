@@ -15,6 +15,11 @@ public class CheckPhaseManager : MonoBehaviour
     public Button submitButton;
     public TextMeshProUGUI submitInfoText;
 
+    [Header("SurveySprachbutons")]
+    public Button surveyDeButton;
+    public Button surveyEnButton;
+    public TextMeshProUGUI surveyChoiceText;
+
     [Header("Audio")]
     public AudioSource reizAudioSource;
     public AudioClip reizLinks;
@@ -65,6 +70,10 @@ public class CheckPhaseManager : MonoBehaviour
         // Submit-Button und Info erstmal verstecken
         if (submitButton != null) submitButton.gameObject.SetActive(false);
         if (submitInfoText != null) submitInfoText.gameObject.SetActive(false);
+        // Sprach-Buttons auch erstmal verstecken
+        if (surveyDeButton != null) surveyDeButton.gameObject.SetActive(false);
+        if (surveyEnButton != null) surveyEnButton.gameObject.SetActive(false);
+        if (surveyChoiceText != null) surveyChoiceText.gameObject.SetActive(false);
 
         // Button Listener (einmal registrieren, keine doppelten)
         if (playButton != null)
@@ -87,7 +96,16 @@ public class CheckPhaseManager : MonoBehaviour
             submitButton.onClick.RemoveAllListeners();
             submitButton.onClick.AddListener(OnSubmitClicked);
         }
-
+        if (surveyDeButton != null)
+        {
+            surveyDeButton.onClick.RemoveAllListeners();
+            surveyDeButton.onClick.AddListener(OnSurveyDeClicked);
+        }
+        if (surveyEnButton != null)
+        {
+            surveyEnButton.onClick.RemoveAllListeners();
+            surveyEnButton.onClick.AddListener(OnSurveyEnClicked);
+        }
         // AudioSource-Pegel an Kalibrierung anpassen
         if (reizAudioSource != null)
         {
@@ -195,11 +213,9 @@ public class CheckPhaseManager : MonoBehaviour
 
     void OnSubmitClicked()
     {
-        // Mehrfach-Klick verhindern
         if (hasSubmitted) return;
         hasSubmitted = true;
 
-        // Button deaktivieren als visuelles Feedback
         if (submitButton != null)
         {
             submitButton.interactable = false;
@@ -210,22 +226,59 @@ public class CheckPhaseManager : MonoBehaviour
             submitInfoText.text = "Daten werden gesendet...";
         }
 
-        // Daten an Google Forms senden
         GameManager.Instance.OnSubmitData();
 
-        // Bestätigungs-Text anzeigen
-        StartCoroutine(ShowSubmitSuccess());
+        StartCoroutine(ShowSurveyChoice());
     }
 
-    IEnumerator ShowSubmitSuccess()
+    IEnumerator ShowSurveyChoice()
     {
-        // Kurz warten, damit der Upload Zeit hat zu starten
+        // Kurz warten, bis der Datenupload Zeit hat zu starten
         yield return new WaitForSeconds(2f);
 
+        // Submit-Button verstecken
+        if (submitButton != null) submitButton.gameObject.SetActive(false);
+
+        // Info-Text anpassen
         if (submitInfoText != null)
         {
-            submitInfoText.text = "Vielen Dank für deine Teilnahme!\nDu kannst das Fenster jetzt schließen.";
+            submitInfoText.text = "Vielen Dank! Bitte fülle noch den abschließenden Fragebogen aus.";
         }
+
+        // Sprach-Auswahl anzeigen
+        if (surveyChoiceText != null)
+        {
+            surveyChoiceText.gameObject.SetActive(true);
+            surveyChoiceText.text = "Bitte wähle deine Sprache:\nPlease choose your language:";
+        }
+
+        if (surveyDeButton != null) surveyDeButton.gameObject.SetActive(true);
+        if (surveyEnButton != null) surveyEnButton.gameObject.SetActive(true);
+    }
+
+    void OnSurveyDeClicked()
+    {
+        GameManager.Instance.OpenSurveyDE();
+        ShowFinalThanks();
+    }
+
+    void OnSurveyEnClicked()
+    {
+        GameManager.Instance.OpenSurveyEN();
+        ShowFinalThanks();
+    }
+
+    void ShowFinalThanks()
+    {
+        if (submitInfoText != null)
+        {
+            submitInfoText.text = "Der Fragebogen sollte sich in einem neuen Tab geöffnet haben.\n\nVielen Dank für deine Teilnahme!\nThank you for your participation!";
+        }
+
+        // Sprach-Buttons können auch versteckt werden
+        if (surveyDeButton != null) surveyDeButton.gameObject.SetActive(false);
+        if (surveyEnButton != null) surveyEnButton.gameObject.SetActive(false);
+        if (surveyChoiceText != null) surveyChoiceText.gameObject.SetActive(false);
     }
 
     void ShuffleList<T>(List<T> list)

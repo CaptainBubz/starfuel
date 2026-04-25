@@ -11,11 +11,9 @@ public class GameManager : MonoBehaviour
     public GameObject startPanel;
     public TextMeshProUGUI collectableCounterText;
 
-    [Header("Fragebogen Einstellungen")]
-    public string surveyBaseURL = "https://docs.google.com/forms/d/e/1FAIpQLSdOfX7V98EZ79nO2UzFegDMpLYV2_YIMYhUbxedAaM4eKI-fg/viewform?usp=pp_url&entry.667255470=";
-
-
-    public TextMeshProUGUI timerText;
+    [Header("Fragebogen PostGame")]
+    public string surveyBaseURL_DE = "https://docs.google.com/forms/d/e/1FAIpQLSdOfX7V98EZ79nO2UzFegDMpLYV2_YIMYhUbxedAaM4eKI-fg/viewform?usp=pp_url&entry.667255470=";
+    public string surveyBaseURL_EN = "https://docs.google.com/forms/d/e/1FAIpQLSe_FoctZk2qj21Krr5uWMiM-yCivClKju1sb1J2ynUbO5R_tQ/viewform?usp=pp_url&entry.667255470=";
 
     [Header("Audio (Reize)")]
     public AudioSource audioSource;
@@ -257,15 +255,18 @@ public class GameManager : MonoBehaviour
             collectableCounterText.text = $"Collected: {totalCollected}";
         }
     }
-    public void OpenSurvey()
+    public void OpenSurveyDE()
     {
-        // Verknüpft den Basis-Link mit der aktuellen Probanden-ID
-        string finalURL = surveyBaseURL + uniqueVPID;
-
-        // Öffnet den Browser-Tab
+        string finalURL = surveyBaseURL_DE + uniqueVPID;
         Application.OpenURL(finalURL);
+        Debug.Log("Deutscher Fragebogen mit ID " + uniqueVPID + " geöffnet.");
+    }
 
-        Debug.Log("Fragebogen mit ID " + uniqueVPID + " geöffnet.");
+    public void OpenSurveyEN()
+    {
+        string finalURL = surveyBaseURL_EN + uniqueVPID;
+        Application.OpenURL(finalURL);
+        Debug.Log("Englischer Fragebogen mit ID " + uniqueVPID + " geöffnet.");
     }
     public void EndGame()
     {
@@ -305,11 +306,7 @@ public class GameManager : MonoBehaviour
                 calibratedThresholdDb
             );
         }
-        OpenSurvey();
+        
     }
 
-        void Update()
-    {
-        if (isGameRunning && timerText != null) timerText.text = GetTimestamp();
-    }
 }
