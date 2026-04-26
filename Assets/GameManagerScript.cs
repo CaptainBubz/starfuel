@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     private string uniqueVPID;
     public int totalSpamCount = 0;
 
+    [Header("Gruppe (Zufallszuweisung)")]
+    public string probandengruppe = "";  // "EG" oder "KG"
+
     [Header("Seiten-Statistik")]
     private int countLinks = 0;
     private int countRechts = 0;
@@ -35,7 +38,7 @@ public class GameManager : MonoBehaviour
     private int totalCollected = 0;
 
     [Header("Kalibrierung")]
-    public static float calibratedThresholdDb = 0.0f;  // Der vom Probanden eingestellte Wert (0-1)
+    public static float calibratedThresholdDb = 0.0f; 
 
     [Header("Check-Phase Referenz")]
     public CheckPhaseManager checkPhaseManager;
@@ -74,9 +77,12 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        // Erzeugt eine anonyme ID für diesen Durchgang
+        //random id
         uniqueVPID = "VP_" + Random.Range(1000, 9999).ToString();
         if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
+        // Zufallszuweisung 50/50 zur EG oder KG
+        probandengruppe = (Random.Range(0, 2) == 0) ? "EG" : "KG";
+        Debug.Log($"Proband {uniqueVPID} wurde Gruppe {probandengruppe} zugewiesen.");
     }
 
     public void StartGame()
@@ -89,24 +95,21 @@ public class GameManager : MonoBehaviour
         UpdateCollectableCounterUI();
         StartGameSounds();
         LogEvent("SYSTEM", "Experiment gestartet");
+        LogEvent("GRUPPE", $"Proband ist in Gruppe: {probandengruppe}");
     }
 
-    // Berechnet Lautstärke X dB ÜBER der Schwelle
     public float GetVolumeAboveThreshold(float dbAbove)
     {
         float targetDb = calibratedThresholdDb + dbAbove;
         return CalibrationManager.DbToGain(targetDb);
     }
-
-    // Spezifische Methoden für die einzelnen Sounds:
     public float GetRocketEngineVolume()
     {
-        return GetVolumeAboveThreshold(15f);  // 15 dB über Schwelle
+        return GetVolumeAboveThreshold(15f);  
     }
-
     public float GetAmbientMusicVolume()
     {
-        return GetVolumeAboveThreshold(5f);   // 5 dB über Schwelle
+        return GetVolumeAboveThreshold(5f);  
     }
     public void StartGameSounds()
     {
@@ -140,7 +143,6 @@ public class GameManager : MonoBehaviour
     }
     public string GetTimestamp() => (Time.time - startTime).ToString("F3");
 
-    // Formatiert Log direkt für CSV (Zeit;Kategorie;Details;Reaktionszeit)
     public void LogEvent(string kat, string det, string rTime = "")
     {
         string csvLine = $"{GetTimestamp()};{kat};{det};{rTime}";
@@ -188,15 +190,22 @@ public class GameManager : MonoBehaviour
         int choice = Random.Range(0, 2);
         aktuellerReizTyp = (choice == 0) ? "Links" : "Rechts";
 
-        // NEU: Reize zählen
         if (choice == 0) countLinks++; else countRechts++;
 
-        AudioClip clip = (choice == 0) ? reizNachLinks : reizNachRechts;
-        if (clip != null)
+        if (probandengruppe == "EG") //in EG wird sound gespielt
         {
-            audioSource.PlayOneShot(clip);
+            AudioClip clip = (choice == 0) ? reizNachLinks : reizNachRechts;
+            if (clip != null)
+            {
+                audioSource.PlayOneShot(clip);
+                lastSoundStartTime = Time.time - startTime;
+                LogEvent("REIZ", $"Sound {aktuellerReizTyp}");
+            }
+        }
+        else //ansionsten kein soudn
+        {
             lastSoundStartTime = Time.time - startTime;
-            LogEvent("REIZ", $"Sound {aktuellerReizTyp}");
+            LogEvent("REIZ_KG", $"Kein Sound (KG), virtueller Reiz {aktuellerReizTyp}");
         }
     }
 
@@ -205,7 +214,6 @@ public class GameManager : MonoBehaviour
         float currentT = Time.time - startTime;
         string rTimeStr = "";
 
-        // Reaktionszeit nur beim ersten Wechsel nach einem Sound messen
         if (lastSoundStartTime > 0)
         {
             float diffMs = (currentT - lastSoundStartTime) * 1000f;
@@ -237,7 +245,6 @@ public class GameManager : MonoBehaviour
 
             bool korrekt = (data.aktiverReiz == side);
 
-            // NEU: Erfolge pro Seite zählen
             if (korrekt)
             {
                 if (side == "Links") successLinks++; else successRechts++;
@@ -276,8 +283,6 @@ public class GameManager : MonoBehaviour
         StartCheckPhase();
     }
 
-
-    // DIESE FUNKTION AM EXPORT-BUTTON VERKNÜPFEN
     public void OnSubmitData()
     {
         float avgRT = reactionTimes.Count > 0 ? reactionTimes.Average() : 0;
@@ -303,7 +308,8 @@ public class GameManager : MonoBehaviour
                 cp_misses,
                 cp_falseAlarms,
                 cp_correctRejections,
-                calibratedThresholdDb
+                calibratedThresholdDb,
+                probandengruppe
             );
         }
         

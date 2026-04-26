@@ -3515,6 +3515,7 @@ MonoBehaviour:
   reizNachRechts: {fileID: 8300000, guid: f422d6298ede8fe48bdde142c3943212, type: 3}
   isGameRunning: 0
   totalSpamCount: 0
+  probandengruppe: 
   checkPhaseManager: {fileID: 1154681090}
   rocketEngineSource: {fileID: 545453240}
   rocketEngineClip: {fileID: 8300000, guid: 9ab448c4ff3ed36418c9ac9cfd34cb47, type: 3}
@@ -3551,6 +3552,7 @@ MonoBehaviour:
   entryID_FalseAlarms: entry.631806719
   entryID_CorrectRejections: entry.1256181512
   entryID_CalibThreshold: entry.1773577144
+  entryID_Gruppe: entry.910897874
 --- !u!114 &1154681090
 MonoBehaviour:
   m_ObjectHideFlags: 0
