@@ -259,7 +259,7 @@ public class GameManager : MonoBehaviour
     {
         if (collectableCounterText != null)
         {
-            collectableCounterText.text = $"Collected: {totalCollected}";
+            collectableCounterText.text = $"{totalCollected}";
         }
     }
     public void OpenSurveyDE()
