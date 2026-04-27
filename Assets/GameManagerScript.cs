@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     public GameObject startPanel;
     public TextMeshProUGUI collectableCounterText;
 
+    [Header("Mobile-Steuerungs-Buttons")]
+    public GameObject leftButton;
+    public GameObject rightButton;
+
     [Header("Fragebogen PostGame")]
     public string surveyBaseURL_DE = "https://docs.google.com/forms/d/e/1FAIpQLSdOfX7V98EZ79nO2UzFegDMpLYV2_YIMYhUbxedAaM4eKI-fg/viewform?usp=pp_url&entry.667255470=";
     public string surveyBaseURL_EN = "https://docs.google.com/forms/d/e/1FAIpQLSe_FoctZk2qj21Krr5uWMiM-yCivClKju1sb1J2ynUbO5R_tQ/viewform?usp=pp_url&entry.667255470=";
@@ -94,6 +98,8 @@ public class GameManager : MonoBehaviour
         totalCollected = 0;
         UpdateCollectableCounterUI();
         StartGameSounds();
+        if (leftButton != null) leftButton.SetActive(true);
+        if (rightButton != null) rightButton.SetActive(true);
         LogEvent("SYSTEM", "Experiment gestartet");
         LogEvent("GRUPPE", $"Proband ist in Gruppe: {probandengruppe}");
     }
@@ -279,6 +285,8 @@ public class GameManager : MonoBehaviour
     {
         isGameRunning = false;
         StopGameSounds();
+        if (leftButton != null) leftButton.SetActive(false);
+        if (rightButton != null) rightButton.SetActive(false);
         LogEvent("SYSTEM", "Hauptspiel beendet");
         StartCheckPhase();
     }

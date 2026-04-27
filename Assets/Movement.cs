@@ -105,6 +105,58 @@ public class RocketMovement : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(ReturnToCenterCoroutine());
     }
+    public void OnLeftButtonPressed()
+    {
+        if (!GameManager.Instance.isGameRunning) return;
+        if (!inputEnabled || externalLock)
+        {
+            GameManager.Instance.RecordSpam(externalLock ? "Cooldown aktiv" : "Autopilot aktiv");
+            return;
+        }
+        if (Time.time < nextInputTime)
+        {
+            GameManager.Instance.RecordSpam("Cooldown aktiv");
+            return;
+        }
+
+        int oldLane = currentLaneIndex;
+        currentLaneIndex = Mathf.Max(currentLaneIndex - 1, minLane);
+
+        if (currentLaneIndex != oldLane)
+        {
+            nextInputTime = Time.time + inputCooldown;
+            string laneName = currentLaneIndex == -1 ? "Links" : (currentLaneIndex == 1 ? "Rechts" : "Mitte");
+            GameManager.Instance.RecordLaneChange(laneName);
+            currentMoveSpeed = laneChangeSpeed;
+            StartRoll(1f);
+        }
+    }
+    public void OnRightButtonPressed()
+    {
+        if (!GameManager.Instance.isGameRunning) return;
+        if (!inputEnabled || externalLock)
+        {
+            GameManager.Instance.RecordSpam(externalLock ? "Cooldown aktiv" : "Autopilot aktiv");
+            return;
+        }
+        if (Time.time < nextInputTime)
+        {
+            GameManager.Instance.RecordSpam("Cooldown aktiv");
+            return;
+        }
+
+        int oldLane = currentLaneIndex;
+        currentLaneIndex = Mathf.Min(currentLaneIndex + 1, maxLane);
+
+        if (currentLaneIndex != oldLane)
+        {
+            nextInputTime = Time.time + inputCooldown;
+            string laneName = currentLaneIndex == -1 ? "Links" : (currentLaneIndex == 1 ? "Rechts" : "Mitte");
+            GameManager.Instance.RecordLaneChange(laneName);
+            currentMoveSpeed = laneChangeSpeed;
+            StartRoll(-1f);
+        }
+    }
 
     IEnumerator ReturnToCenterCoroutine()
     {
