@@ -26,8 +26,8 @@ public class CheckPhaseManager : MonoBehaviour
     public AudioClip reizRechts;
 
     [Header("Konfiguration")]
-    public int totalTrials = 20;
-    public int signalTrials = 10;
+    public int totalTrials = 6;
+    public int signalTrials = 6;
     public float playDelaySeconds = 0.5f;
 
     // Zählvariablen

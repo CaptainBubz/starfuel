@@ -11,6 +11,7 @@ public class CalibrationManager : MonoBehaviour
     public TextMeshProUGUI dbValueText;  // Optional: zeigt aktuellen dB-Wert
     public Button playButton;
     public Button confirmButton;
+    public TextMeshProUGUI soundActiveText;
 
     [Header("Audio")]
     public AudioSource calibrationAudioSource;
@@ -23,6 +24,9 @@ public class CalibrationManager : MonoBehaviour
 
     private bool isPlaying = false;
 
+    [Header("Referenzen")]
+    public IntroductionUIScript instructionManager;
+
     void Start()
     {
         // Slider-Konfiguration
@@ -34,7 +38,7 @@ public class CalibrationManager : MonoBehaviour
             dbSlider.onValueChanged.AddListener(OnDbSliderChanged);
         }
 
-        if (playButton != null) playButton.onClick.AddListener(TogglePlayPause);
+        if (playButton != null) playButton.onClick.AddListener(StartSound);
         if (confirmButton != null) confirmButton.onClick.AddListener(OnConfirm);
 
         // AudioSource vorbereiten
@@ -49,10 +53,13 @@ public class CalibrationManager : MonoBehaviour
 
         // Initial-Anzeige
         UpdateDbValueText(startDb);
-
+        if (soundActiveText != null) soundActiveText.gameObject.SetActive(false);
         if (calibrationPanel != null) calibrationPanel.SetActive(true);
     }
-
+    public void ShowCalibrationPanel()
+    {
+        if (calibrationPanel != null) calibrationPanel.SetActive(true);
+    }
     void OnDbSliderChanged(float dbValue)
     {
         if (calibrationAudioSource != null)
@@ -71,19 +78,25 @@ public class CalibrationManager : MonoBehaviour
         }
     }
 
-    void TogglePlayPause()
+    void StartSound()
     {
         if (calibrationAudioSource == null) return;
+        if (isPlaying) return;  // Schon am Spielen, nichts tun
 
-        if (isPlaying)
+        calibrationAudioSource.Play();
+        isPlaying = true;
+
+        // Sound-Active-Text einblenden
+        if (soundActiveText != null)
         {
-            calibrationAudioSource.Pause();
-            isPlaying = false;
+            soundActiveText.gameObject.SetActive(true);
+            soundActiveText.text = "Der Sound spielt jetzt.";
         }
-        else
+
+        // Play-Button deaktivieren, damit nicht nochmal geklickt wird
+        if (playButton != null)
         {
-            calibrationAudioSource.Play();
-            isPlaying = true;
+            playButton.interactable = false;
         }
     }
 
@@ -93,12 +106,13 @@ public class CalibrationManager : MonoBehaviour
         {
             calibrationAudioSource.Stop();
         }
-
-        // Schwelle als dB speichern
+        isPlaying = false;
         GameManager.Instance.SetCalibratedThresholdDb(dbSlider.value);
 
         if (calibrationPanel != null) calibrationPanel.SetActive(false);
-        GameManager.Instance.StartGame();
+
+        // Spielanleitung anzeigen
+        if (instructionManager != null) instructionManager.ShowInstructionPanel();
     }
 
     // Umrechnung dB → lineares Gain
