@@ -15,6 +15,16 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_GUID: 0098edb38791efc4199f2580f4092dda
   m_SerializeEntries:
+  - m_GUID: 42812fe1f4dbcc54cbe37c9c1eae8daf
+    m_Address: Assets/IntroductionUI Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 871d84cad1117af49b3dd42353fa1248
+    m_Address: Assets/CheckPhaseUI Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a6920b75eacc9594180fd7253123a5d2
     m_Address: Assets/CalibrationUI Shared Data.asset
     m_ReadOnly: 1

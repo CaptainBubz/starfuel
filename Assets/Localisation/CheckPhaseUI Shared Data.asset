@@ -10,23 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: CalibrationUI Shared Data
+  m_Name: CheckPhaseUI Shared Data
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
-  m_TableCollectionName: CalibrationUI
-  m_TableCollectionNameGuidString: a6920b75eacc9594180fd7253123a5d2
+  m_TableCollectionName: CheckPhaseUI
+  m_TableCollectionNameGuidString: 871d84cad1117af49b3dd42353fa1248
   m_Entries:
-  - m_Id: 27999625216
-    m_Key: calibration_text
+  - m_Id: 47536693248
+    m_Key: "JaSoundgeh\xF6rt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98484903936
+    m_Key: "NeinSoundgeh\xF6rt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137160581120
+    m_Key: submitData
+    m_Metadata:
+      m_Items: []
+  - m_Id: 181397905408
+    m_Key: PlaySound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232744574976
+    m_Key: Infotxt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 250570366976
+    m_Key: SurveyInfotxt
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 8284486474515611857
+    rid: 8284486557546316023
   references:
     version: 2
     RefIds:
-    - rid: 8284486474515611857
+    - rid: 8284486557546316023
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1777245298095
+        m_CustomEpoch: 1777563492387

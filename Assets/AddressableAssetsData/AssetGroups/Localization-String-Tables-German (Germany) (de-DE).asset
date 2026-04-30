@@ -16,7 +16,19 @@ MonoBehaviour:
   m_GUID: 57ee1a63d490c004bb50651c3827b7c4
   m_SerializeEntries:
   - m_GUID: 3f8724f1a47235d4fb9f027aba114610
-    m_Address: MainUI_de-DE
+    m_Address: GameUI_de-DE
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-de-DE
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 431e0739eea49d540a5f587b8248c35f
+    m_Address: CheckPhaseUI_de-DE
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-de-DE
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3cb3debeaad4db478881e7cd977264f
+    m_Address: IntroductionUI_de-DE
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-de-DE

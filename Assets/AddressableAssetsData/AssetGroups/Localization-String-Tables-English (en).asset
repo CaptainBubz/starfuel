@@ -21,8 +21,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 513c30caa624215478e0029ff3e8dca4
+    m_Address: IntroductionUI_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6353ef1aa4308b44bb75a4d49064f14f
-    m_Address: MainUI_en
+    m_Address: GameUI_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c5a7b6f3b552248438190eeeee5efd88
+    m_Address: CheckPhaseUI_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

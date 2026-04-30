@@ -10,13 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: MainUI Shared Data
+  m_Name: GameUI Shared Data
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
-  m_TableCollectionName: MainUI
+  m_TableCollectionName: GameUI
   m_TableCollectionNameGuidString: dd663da7b18b9374aa86090734e5dd6c
   m_Entries:
   - m_Id: 41459146752
     m_Key: Counter_txt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1334225775648768
+    m_Key: LeftButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1334266640752640
+    m_Key: 'Right Button
+
+'
     m_Metadata:
       m_Items: []
   m_Metadata:

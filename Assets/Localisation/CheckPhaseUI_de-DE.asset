@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: CheckPhaseUI_de-DE
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: de-DE
+  m_SharedData: {fileID: 11400000, guid: 871d84cad1117af49b3dd42353fa1248, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 47536693248
+    m_Localized: "Ja - ich habe den Ton geh\xF6rt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98484903936
+    m_Localized: "Nein - ich habe keinen Ton geh\xF6rt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137160581120
+    m_Localized: Daten senden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 181397905408
+    m_Localized: Ton abspielen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232744574976
+    m_Localized: "-Klicke auf Ton abspielen\n-Falls du dann einen Ton h\xF6rst dr\xFCckst
+      du auf \"ich habe den Ton geh\xF6rt\"\n-Falls du nichts h\xF6rst dr\xFCcke
+      auf \"ich habe den Ton nicht geh\xF6rt. \n-Wenn du fertig bist klicke auf \"Daten
+      \xFCbertragen\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 250570366976
+    m_Localized: "Bitte f\xFClle noch den Fragebogen zum Spiel aus.\nKlicke auf den
+      Fragebogen, den du ausf\xFCllen m\xF6chtest\n"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

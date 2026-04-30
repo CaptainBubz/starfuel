@@ -10,16 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: CalibrationUI_en
+  m_Name: IntroductionUI_en
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
   m_LocaleId:
     m_Code: en
-  m_SharedData: {fileID: 11400000, guid: a6920b75eacc9594180fd7253123a5d2, type: 2}
+  m_SharedData: {fileID: 11400000, guid: 42812fe1f4dbcc54cbe37c9c1eae8daf, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 27999625216
-    m_Localized: Calibrate your sound
+  - m_Id: 45372432384
+    m_Localized: '-Collect as many Crystals as possible
+
+
+      -Control the Rocket
+      with A and D on Keyboard or use the Buttons below'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11851554816
+    m_Localized: Start Game
     m_Metadata:
       m_Items: []
   references:

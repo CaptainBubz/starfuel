@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [Header("UI Elemente")]
-    public GameObject startPanel;
     public TextMeshProUGUI collectableCounterText;
 
     [Header("Mobile-Steuerungs-Buttons")]
@@ -91,7 +90,6 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        startPanel.SetActive(false);
         Time.timeScale = 1;
         startTime = Time.time;
         isGameRunning = true;

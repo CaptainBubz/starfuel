@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: MainUI_en
+  m_Name: GameUI_en
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
   m_LocaleId:
     m_Code: en
@@ -20,6 +20,14 @@ MonoBehaviour:
   m_TableData:
   - m_Id: 41459146752
     m_Localized: 'Collected:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1334225775648768
+    m_Localized: Left / A
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1334266640752640
+    m_Localized: Right / D
     m_Metadata:
       m_Items: []
   references:
