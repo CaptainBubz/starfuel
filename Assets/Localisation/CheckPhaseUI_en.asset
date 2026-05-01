@@ -43,11 +43,13 @@ MonoBehaviour:
       -If you don''t hear anything, press "I did not hear the sound"
 
       -Once
-      finished, click "submit Data"'
+      finished, click "submit Data" (By clicking Start, you consent to the anonymous
+      collection and storage of your gameplay metrics)'
     m_Metadata:
       m_Items: []
   - m_Id: 250570366976
     m_Localized: 'Please also complete the game questionnaire.
+
 
       Click on the
       questionnaire you would like to fill out.'

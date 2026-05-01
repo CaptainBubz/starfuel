@@ -38,12 +38,13 @@ MonoBehaviour:
     m_Localized: "-Klicke auf Ton abspielen\n-Falls du dann einen Ton h\xF6rst dr\xFCckst
       du auf \"ich habe den Ton geh\xF6rt\"\n-Falls du nichts h\xF6rst dr\xFCcke
       auf \"ich habe den Ton nicht geh\xF6rt. \n-Wenn du fertig bist klicke auf \"Daten
-      \xFCbertragen\""
+      senden\" (Mit dem Klick auf Daten \xFCbertragen akzeptierst du die anonyme
+      Speicherung deiner Spielmetriken)"
     m_Metadata:
       m_Items: []
   - m_Id: 250570366976
-    m_Localized: "Bitte f\xFClle noch den Fragebogen zum Spiel aus.\nKlicke auf den
-      Fragebogen, den du ausf\xFCllen m\xF6chtest\n"
+    m_Localized: "Bitte f\xFClle noch den Fragebogen zum Spiel aus.\n\nKlicke auf
+      den Fragebogen, den du ausf\xFCllen m\xF6chtest\n"
     m_Metadata:
       m_Items: []
   references:
