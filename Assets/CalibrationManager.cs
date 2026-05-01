@@ -121,10 +121,4 @@ public class CalibrationManager : MonoBehaviour
         return Mathf.Pow(10f, db / 20f);
     }
 
-    // Umrechnung lineares Gain → dB (falls mal gebraucht)
-    public static float GainToDb(float gain)
-    {
-        if (gain <= 0f) return -80f; // Stille als -80 dB behandeln
-        return 20f * Mathf.Log10(gain);
-    }
 }

@@ -19,10 +19,10 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 27999625216
-    m_Localized: "-Klicke auf \"Spiele Ton ab\"\n-Ziehe dann den Regler so lange
-      nach links, bis du den Ton kaum bis garnicht mehr h\xF6ren kannst\n-Best\xE4tige
-      dann deine Kalibrierung\n-Bewege den Regler nur nach links\n-Falls du von vorne
-      beginnen m\xF6chtest ziehe den Regler wieder ganz nach rechts"
+    m_Localized: "-Klicke auf \"Starte Ton\"\n\n-Ziehe den Regler so lange nach links,
+      bis du den Ton kaum bis garnicht mehr h\xF6ren kannst\n\n-Best\xE4tige deine
+      Kalibrierung\n\n-Bewege den Regler nur nach links\n-Falls du von vorne beginnen
+      m\xF6chtest ziehe den Regler wieder ganz nach rechts"
     m_Metadata:
       m_Items: []
   - m_Id: 1324757868371968
