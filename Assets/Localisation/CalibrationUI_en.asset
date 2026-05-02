@@ -19,22 +19,25 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 27999625216
-    m_Localized: '-Press "Start Sound"
+    m_Localized: '<color=green>-Put on your Headphones!</color>
 
 
-      -Drag the slider down until you can
-      hardly, if at all, hear the sound
+      -Press "Start
+      Sound"
+
+
+      -Drag the slider down until you can hardly, if at all, hear
+      the sound
 
 
       -Confirm your calibration
 
 
-      -Only
-      move the slider to the left
+      -Only move the slider to
+      the left
 
 
-      -To start over, drag the slider all the
-      way back to the right
+      -To start over, drag the slider all the way back to the right
 
 
 '
