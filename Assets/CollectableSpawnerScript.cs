@@ -9,7 +9,7 @@ public class CollectableSpawnerScript : MonoBehaviour
     public float delaySeconds = 4.350f;
     public float forceReturnPreload = 2.0f;
     public float soundPreload = 0.350f;
-    public float lockInputPreload = 1.0f; //die neuen 1000ms Sperre
+    public float lockInputPreload = 1.0f; 
 
     void Start() { StartCoroutine(SpawnRoutine()); }
 

@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         //random id
         uniqueVPID = "VP_" + Random.Range(1000, 9999).ToString();
         if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
-        // Zufallszuweisung 50/50 zur EG oder KG
+        //zfallszuweisung 50/50 zur EG oder KG
         probandengruppe = (Random.Range(0, 2) == 0) ? "EG" : "KG";
         Debug.Log($"Proband {uniqueVPID} wurde Gruppe {probandengruppe} zugewiesen.");
     }

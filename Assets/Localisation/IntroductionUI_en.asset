@@ -19,11 +19,12 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 45372432384
-    m_Localized: '-Collect as many Crystals as possible
+    m_Localized: '-<color=green>Collect</color> as many <color=green>crystals</color>
+      as possible
 
 
-      -Control the Rocket
-      with A and D on Keyboard or use the Buttons below'
+      -<color=green>Control</color> the rocket with <color=green>A</color>
+      and <color=green>D</color> on the keyboard or use the buttons below'
     m_Metadata:
       m_Items: []
   - m_Id: 11851554816

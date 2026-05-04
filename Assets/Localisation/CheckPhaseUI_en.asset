@@ -19,15 +19,15 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 47536693248
-    m_Localized: Yes - i heard the Sound
+    m_Localized: <color=green>Yes</color> - I heard the Sound
     m_Metadata:
       m_Items: []
   - m_Id: 98484903936
-    m_Localized: No - i didnt hear the Sound
+    m_Localized: <color=green>No</color> - I didnt hear the Sound
     m_Metadata:
       m_Items: []
   - m_Id: 137160581120
-    m_Localized: submit Data
+    m_Localized: Submit Data
     m_Metadata:
       m_Items: []
   - m_Id: 181397905408
@@ -37,22 +37,29 @@ MonoBehaviour:
   - m_Id: 232744574976
     m_Localized: '-Click "Play Sound"
 
+
       -If you hear a sound, press "I heard
       the sound"
 
-      -If you don''t hear anything, press "I did not hear the sound"
 
-      -Once
-      finished, click "submit Data" (By clicking Start, you consent to the anonymous
-      collection and storage of your gameplay metrics)'
+      -If you don''t hear anything, press "I did not hear the
+      sound"
+
+
+      -<color=green>Repeat it 6 times</color>'
     m_Metadata:
       m_Items: []
   - m_Id: 250570366976
-    m_Localized: 'Please also complete the game questionnaire.
+    m_Localized: '-Please also complete the game questionnaire.
 
 
-      Click on the
-      questionnaire you would like to fill out.'
+      -Click on
+      the questionnaire you would like to fill out.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1324244326178816
+    m_Localized: -Once finished, click "submit Data" (By clicking Start, you consent
+      to the anonymous collection and storage of your gameplay metrics)
     m_Metadata:
       m_Items: []
   references:

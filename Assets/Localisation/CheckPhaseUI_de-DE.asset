@@ -19,11 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 47536693248
-    m_Localized: "Ja - ich habe den Ton geh\xF6rt"
+    m_Localized: "<color=green>Ja</color> - ich habe den Ton geh\xF6rt"
     m_Metadata:
       m_Items: []
   - m_Id: 98484903936
-    m_Localized: "Nein - ich habe keinen Ton geh\xF6rt"
+    m_Localized: "<color=green>Nein</color> - ich habe keinen Ton geh\xF6rt"
     m_Metadata:
       m_Items: []
   - m_Id: 137160581120
@@ -35,16 +35,20 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 232744574976
-    m_Localized: "-Klicke auf Ton abspielen\n-Falls du dann einen Ton h\xF6rst dr\xFCckst
-      du auf \"ich habe den Ton geh\xF6rt\"\n-Falls du nichts h\xF6rst dr\xFCcke
-      auf \"ich habe den Ton nicht geh\xF6rt. \n-Wenn du fertig bist klicke auf \"Daten
-      senden\" (Mit dem Klick auf Daten \xFCbertragen akzeptierst du die anonyme
-      Speicherung deiner Spielmetriken)"
+    m_Localized: "-Klicke auf Ton abspielen\n\n-Falls du dann einen Ton h\xF6rst,
+      dr\xFCckst du auf \"Ich habe den Ton geh\xF6rt\"\n\n-Falls du nichts h\xF6rst
+      dr\xFCcke auf \"Ich habe den Ton nicht geh\xF6rt\" \n\n-<color=green>Wiederhole
+      das 6 mal</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 250570366976
-    m_Localized: "Bitte f\xFClle noch den Fragebogen zum Spiel aus.\n\nKlicke auf
+    m_Localized: "-Bitte f\xFClle noch den Fragebogen zum Spiel aus.\n\n-Klicke auf
       den Fragebogen, den du ausf\xFCllen m\xF6chtest\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1324244326178816
+    m_Localized: -Wenn du fertig bist klicke auf "Daten senden" (Mit dem Klick auf
+      "Daten senden" akzeptierst du die anonyme Speicherung deiner Spielmetriken)
     m_Metadata:
       m_Items: []
   references:

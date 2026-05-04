@@ -39,6 +39,10 @@ MonoBehaviour:
     m_Key: SurveyInfotxt
     m_Metadata:
       m_Items: []
+  - m_Id: 1324244326178816
+    m_Key: infotxtsubmitdata
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

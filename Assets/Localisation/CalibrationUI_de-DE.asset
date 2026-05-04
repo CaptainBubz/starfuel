@@ -19,10 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 27999625216
-    m_Localized: "<color=green>-Zieh deine Kopfh\xF6rer auf!</color>\n\n-Klicke auf
-      \"Starte Ton\"\n\n-Ziehe den Regler so lange nach links, bis du den Ton kaum
-      bis garnicht mehr h\xF6ren kannst\n\n-Best\xE4tige deine Kalibrierung\n\n-Bewege
-      den Regler nur nach links\n\n-Falls du von vorne beginnen m\xF6chtest ziehe
+    m_Localized: "<color=green>-Zieh deine Kopfh\xF6rer auf und \xE4ndere nicht mehr
+      die System-Lautst\xE4rke!</color>\n\n-Klicke auf \"Starte Ton\"\n\n-Ziehe den
+      Regler so lange nach links, bis du den Ton <color=green>kaum bis gar nicht
+      mehr</color> h\xF6ren kannst\n\n-Best\xE4tige deine Kalibrierung\n\n-Bewege
+      den Regler nur nach links\n\n-Falls du von vorne beginnen m\xF6chtest, ziehe
       den Regler wieder ganz nach rechts"
     m_Metadata:
       m_Items: []

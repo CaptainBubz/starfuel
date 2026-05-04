@@ -19,8 +19,9 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 45372432384
-    m_Localized: "-Sammle so viele Kristalle wie m\xF6glich\n\n-Steuere die Rakete
-      mit A und D auf der Tastatur oder den unteren Kn\xF6pfen"
+    m_Localized: "-<color=green>Sammle</color> so viele <color=green>Kristalle</color>
+      wie m\xF6glich\n\n-<color=green>Steuere</color> die Rakete mit <color=green>A</color>
+      und <color=green>D</color> auf der Tastatur oder den unteren Kn\xF6pfen"
     m_Metadata:
       m_Items: []
   - m_Id: 11851554816
