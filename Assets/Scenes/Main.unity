@@ -5082,7 +5082,7 @@ MonoBehaviour:
   ambientMusicSource: {fileID: 6711516}
   ambientMusicClip: {fileID: 8300000, guid: 2de4649d1f4705d4ca958bc92078734e, type: 3}
   rocketEngineDbAboveThreshold: 38
-  ambientMusicDbAboveThreshold: 43
+  ambientMusicDbAboveThreshold: 40
   eventLogs: []
   reactionTimes: []
 --- !u!114 &1154681089
